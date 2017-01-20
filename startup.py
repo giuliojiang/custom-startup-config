@@ -10,13 +10,13 @@ import sys
 
 MOUSE_XINPUT_NAME = "Xornet"
 
-def run_command_shell(cmd):
-    print('>>> {}'.format(cmd))
-    the_process = subprocess.Popen(['/bin/bash', '-c', cmd])
-    the_process.wait()
-
 def run_command_shell_proc(cmd):
+    print('>>> {}'.format(cmd))
     return subprocess.Popen(['/bin/bash', '-c', cmd], stdout=subprocess.PIPE)
+
+def run_command_shell(cmd):
+    the_process = run_command_shell_proc(cmd)
+    the_process.wait()
 
 # disable mouse acceleration
 run_command_shell('xset m 0/1 4')
