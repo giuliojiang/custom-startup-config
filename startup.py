@@ -8,7 +8,7 @@ import subprocess
 import time
 import sys
 
-MOUSE_XINPUT_NAME = ["Xornet", "Synaptics"]
+MOUSE_XINPUT_NAME = ["Xornet", "Synaptics", "Naos"]
 
 def run_command_shell_proc(cmd):
     print('>>> {}'.format(cmd))
@@ -51,4 +51,4 @@ for mouse_line in mouse_xinput_lines:
 
 # set mouse speed
 for mouse_id in mouse_xinput_ids:
-    run_command_shell('xinput set-prop {} "Device Accel Constant Deceleration" 2'.format(mouse_id))
+    run_command_shell('xinput set-prop {} "Device Accel Constant Deceleration" 1'.format(mouse_id))
