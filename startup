@@ -1,0 +1,22 @@
+#! /usr/bin/env python
+
+import os
+import subprocess
+
+# custom-startup-config/
+execDir = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
+
+# custom-startup-config/mouseAcceleration
+mouseAccelerationDir = os.path.join(execDir, "mouseAcceleration")
+mouseAccelerationScript = os.path.join(mouseAccelerationDir, "startup.py")
+subprocess.call(["bash", mouseAccelerationScript])
+
+# custom-startup-config/pingKeepAlive
+pingDir = os.path.join(execDir, "pingKeepAlive")
+pingDirScript = os.path.join(pingDir, "ping-keepalive.sh")
+subprocess.call(["gnome-terminal", "-x", pingDirScript])
+
+# AMD-Linux-Power-Management
+amdGpuDir = os.path.join(execDir, "..", "AMD-Linux-Power-Management", "AMDGPUPRO")
+amdGpuScript = os.path.join(amdGpuDir, "set_freq.py")
+subprocess.call(["sudo", amdGpuScript])
