@@ -9,7 +9,7 @@ execDir = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
 # custom-startup-config/mouseAcceleration
 mouseAccelerationDir = os.path.join(execDir, "mouseAcceleration")
 mouseAccelerationScript = os.path.join(mouseAccelerationDir, "startup.py")
-subprocess.call(["bash", mouseAccelerationScript])
+subprocess.call(["python", mouseAccelerationScript])
 
 # custom-startup-config/pingKeepAlive
 pingDir = os.path.join(execDir, "pingKeepAlive")
