@@ -1,0 +1,2 @@
+#! /bin/bash
+screen -d -m "/home/gj/git/custom-startup-config/xprofile/start.sh"
