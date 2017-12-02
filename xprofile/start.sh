@@ -7,6 +7,9 @@ import time
 def run(cmd):
     subprocess.Popen(cmd)
 
+# wait a little bit
+time.sleep(2)
+
 # custom-startup-config/xprofile
 exec_dir = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
 
