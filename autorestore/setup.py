@@ -118,7 +118,7 @@ exec_required.call(["fc-cache"], dir=fonts_dir)
 print("Setting up .screenrc")
 
 screenrc_path = os.path.abspath(os.path.join(home_dir, ".screenrc"))
-exec_required.call(["wget", "https://gist.githubusercontent.com/giuliojiang/0de93cc5c444676e770bec919eb8bccf/raw/b7741171ad345789c4a902803912f944841ab9fd/.screenrc", "-O", screenrc_path)
+exec_required.call(["wget", "https://gist.githubusercontent.com/giuliojiang/0de93cc5c444676e770bec919eb8bccf/raw/b7741171ad345789c4a902803912f944841ab9fd/.screenrc", "-O", screenrc_path])
 
 # Exit ------------------------------------------------------------------------
 
