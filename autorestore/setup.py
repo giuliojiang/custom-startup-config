@@ -101,24 +101,24 @@ if not file_contains_string(fstab_path, "/tmp"):
 print("Setting up .bashrc")
 
 bashrc_path = os.path.abspath(os.path.join(home_dir, ".bashrc"))
-exec_required.call(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrc_path])
+exec_required(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrc_path])
 
 # Setup fonts -----------------------------------------------------------------
 
 print("Setting up fonts")
 
 fonts_dir = os.path.abspath(os.path.join(home_dir, ".fonts"))
-exec_required.call(["mkdir", fonts_dir])
-exec_required.call(["wget", "https://fonts.google.com/download?family=Roboto|Roboto%20Mono|Source%20Code%20Pro|PT%20Serif", "-O", "fonts.zip"], dir=fonts_dir)
-exec_required.call(["unzip", "fonts.zip"], dir=fonts_dir)
-exec_required.call(["fc-cache"], dir=fonts_dir)
+exec_required(["mkdir", fonts_dir])
+exec_required(["wget", "https://fonts.google.com/download?family=Roboto|Roboto%20Mono|Source%20Code%20Pro|PT%20Serif", "-O", "fonts.zip"], dir=fonts_dir)
+exec_required(["unzip", "fonts.zip"], dir=fonts_dir)
+exec_required(["fc-cache"], dir=fonts_dir)
 
 # Setup .screenrc -------------------------------------------------------------
 
 print("Setting up .screenrc")
 
 screenrc_path = os.path.abspath(os.path.join(home_dir, ".screenrc"))
-exec_required.call(["wget", "https://gist.githubusercontent.com/giuliojiang/0de93cc5c444676e770bec919eb8bccf/raw/b7741171ad345789c4a902803912f944841ab9fd/.screenrc", "-O", screenrc_path])
+exec_required(["wget", "https://gist.githubusercontent.com/giuliojiang/0de93cc5c444676e770bec919eb8bccf/raw/b7741171ad345789c4a902803912f944841ab9fd/.screenrc", "-O", screenrc_path])
 
 # Exit ------------------------------------------------------------------------
 
