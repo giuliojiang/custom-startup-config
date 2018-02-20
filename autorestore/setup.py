@@ -83,7 +83,7 @@ print("Setting up CFQ elevator")
 grub_path = "/etc/default/grub"
 if not file_contains_string(grub_path, "elevator=cfq"):
     file_replace_string(grub_path, "GRUB_CMDLINE_LINUX_DEFAULT", 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=cfq"')
-    exec_required.call(["update-grub"])
+    exec_required(["update-grub"])
 
 # Setup fstab entries ---------------------------------------------------------
 
