@@ -101,7 +101,7 @@ if not file_contains_string(fstab_path, "/tmp"):
 print("Setting up .bashrc")
 
 bashrc_path = os.path.abspath(os.path.join(home_dir, ".bashrc"))
-exec_required.call(["wget", "https://gist.githubusercontent.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/271a2dddc45ee97b1839f66cd5a6b4da922f7cd7/.bashrc", "-O", bashrc_path])
+exec_required.call(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrc_path])
 
 # Setup fonts -----------------------------------------------------------------
 
