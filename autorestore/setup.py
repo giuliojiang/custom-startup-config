@@ -40,6 +40,22 @@ def file_replace_string(f_path, matcher, replacement):
         f_file.write(line + '\n')
     f_file.close()
 
+# Executes a subprocess call (no shell)
+# exit_code: The required exit code to consider the command to be successful
+# dir: The working directory to be used
+def exec_required(cmd, exit_code=0, dir=None):
+    saved_dir = os.path.abspath(os.getcwd())
+    if dir is not None:
+        os.chdir(dir)
+
+    print(">>> {}".format(" ".join(cmd)))
+    code = subprocess.call(cmd)
+    if code != exit_code:
+        print("ERROR: Required exit code of [{}] is different from actual exit code [{}] when executing {}".format(exit_code, code, cmd))
+        sys.exit(1)
+
+    os.chdir(saved_dir)
+
 # Setup directories -----------------------------------------------------------
 
 home_dir = os.path.abspath(os.path.expanduser("~"))
@@ -58,7 +74,7 @@ xprofile_file.write('screen -d -m "{}"\n'.format(os.path.abspath(os.path.join(gi
 xprofile_file.close()
 
 # Make .xprofile executable
-subprocess.call(["chmod", "+x", os.path.abspath(os.path.join(home_dir, ".xprofile"))])
+exec_required(["chmod", "+x", os.path.abspath(os.path.join(home_dir, ".xprofile"))])
 
 # Setup CFQ elevator ----------------------------------------------------------
 
@@ -67,7 +83,7 @@ print("Setting up CFQ elevator")
 grub_path = "/etc/default/grub"
 if not file_contains_string(grub_path, "elevator=cfq"):
     file_replace_string(grub_path, "GRUB_CMDLINE_LINUX_DEFAULT", 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=cfq"')
-    subprocess.call(["update-grub"])
+    exec_required.call(["update-grub"])
 
 # Setup fstab entries ---------------------------------------------------------
 
@@ -85,18 +101,24 @@ if not file_contains_string(fstab_path, "/tmp"):
 print("Setting up .bashrc")
 
 bashrc_path = os.path.abspath(os.path.join(home_dir, ".bashrc"))
-subprocess.call(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrc_path])
+exec_required.call(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrc_path])
 
 # Setup fonts -----------------------------------------------------------------
 
 print("Setting up fonts")
 
 fonts_dir = os.path.abspath(os.path.join(home_dir, ".fonts"))
-subprocess.call(["mkdir", fonts_dir])
-os.chdir(fonts_dir)
-subprocess.call(["wget", "https://fonts.google.com/download?family=Roboto|Roboto%20Mono|Source%20Code%20Pro|PT%20Serif", "-O", "fonts.zip"])
-subprocess.call(["unzip", "fonts.zip"])
-subprocess.call(["fc-cache"])
+exec_required.call(["mkdir", fonts_dir])
+exec_required.call(["wget", "https://fonts.google.com/download?family=Roboto|Roboto%20Mono|Source%20Code%20Pro|PT%20Serif", "-O", "fonts.zip"], dir=fonts_dir)
+exec_required.call(["unzip", "fonts.zip"], dir=fonts_dir)
+exec_required.call(["fc-cache"], dir=fonts_dir)
+
+# Setup .screenrc -------------------------------------------------------------
+
+print("Setting up .screenrc")
+
+screenrc_path = os.path.abspath(os.path.join(home_dir, ".screenrc"))
+exec_required.call(["wget", "https://gist.githubusercontent.com/giuliojiang/0de93cc5c444676e770bec919eb8bccf/raw/b7741171ad345789c4a902803912f944841ab9fd/.screenrc", "-O", screenrc_path)
 
 # Exit ------------------------------------------------------------------------
 
