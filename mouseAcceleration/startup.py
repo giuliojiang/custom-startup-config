@@ -32,6 +32,7 @@ xinput_process = run_command_shell_proc('xinput list')
 mouse_xinput_lines = []
 while True:
     line = xinput_process.stdout.readline()
+    line = line.decode("utf-8")
     if line != '':
         if any_contains(MOUSE_XINPUT_NAME, line):
             mouse_xinput_lines.append(line.rstrip())
@@ -51,5 +52,5 @@ for mouse_line in mouse_xinput_lines:
 
 # set mouse speed
 for mouse_id in mouse_xinput_ids:
-    run_command_shell('xinput set-prop {} "libinput Accel Speed" -0.8'.format(mouse_id))
+    run_command_shell('xinput set-prop {} "libinput Accel Speed" -1.0'.format(mouse_id))
     run_command_shell('xinput set-prop {} "Device Accel Constant Deceleration" 8'.format(mouse_id))

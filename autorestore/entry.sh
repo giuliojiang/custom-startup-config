@@ -8,4 +8,5 @@ sudo apt update && \
     git clone https://github.com/giuliojiang/custom-startup-config --depth 1 && \
     cd custom-startup-config && \
     cd autorestore && \
-    sudo ./install.sh
+    sudo ./install.sh && \
+    sudo ./setup.py

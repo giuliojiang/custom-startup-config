@@ -4,6 +4,15 @@ import subprocess
 import os
 import time
 import sys
+import argparse
+
+parser = argparse.ArgumentParser()
+    
+parser.add_argument('--pingmouse',
+                    action='store_true'
+                    )
+
+args = parser.parse_args()
 
 # Helper functions ------------------------------------------------------------
 
@@ -65,16 +74,18 @@ git_dir = os.path.abspath(os.path.dirname(curr_dir));
 
 # Setup xprofile --------------------------------------------------------------
 
-print("Setting up xprofile...")
+if args.pingmouse:
 
-# Open the .xprofile
-xprofile_file = open(os.path.abspath(os.path.join(home_dir, ".xprofile")), 'w')
-xprofile_file.write("#! /bin/bash\n")
-xprofile_file.write('screen -d -m "{}"\n'.format(os.path.abspath(os.path.join(git_dir, "xprofile", "start.sh"))))
-xprofile_file.close()
+    print("Setting up xprofile...")
 
-# Make .xprofile executable
-exec_required(["chmod", "+x", os.path.abspath(os.path.join(home_dir, ".xprofile"))])
+    # Open the .xprofile
+    xprofile_file = open(os.path.abspath(os.path.join(home_dir, ".xprofile")), 'w')
+    xprofile_file.write("#! /bin/bash\n")
+    xprofile_file.write('screen -d -m "{}"\n'.format(os.path.abspath(os.path.join(git_dir, "xprofile", "start.sh"))))
+    xprofile_file.close()
+
+    # Make .xprofile executable
+    exec_required(["chmod", "+x", os.path.abspath(os.path.join(home_dir, ".xprofile"))])
 
 # Setup CFQ elevator ----------------------------------------------------------
 

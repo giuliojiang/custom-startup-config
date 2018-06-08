@@ -5,8 +5,8 @@ sudo apt update && \
     cd git && \
     rm -rf custom-startup-config-bak ; \
     mv custom-startup-config custom-startup-config-bak ; \
-    git clone https://github.com/giuliojiang/custom-startup-config && \
+    git clone https://github.com/giuliojiang/custom-startup-config --depth 1 && \
     cd custom-startup-config && \
-    git checkout --track remotes/origin/autorestore && \
     cd autorestore && \
-    sudo ./install.sh
+    sudo ./install.sh && \
+    sudo ./setup.py --pingmouse
