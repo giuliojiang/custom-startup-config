@@ -24,7 +24,7 @@ mouse_dir = os.path.abspath(os.path.join(root_dir, "mouseAcceleration"))
 
 # Execute
 run([os.path.abspath(os.path.join(ping_dir, "ping-keepalive.sh"))])
-run([os.path.abspath(os.path.join(mouse_dir, "startup.py"))])
+# run([os.path.abspath(os.path.join(mouse_dir, "startup.py"))])
 
 while True:
     time.sleep(100)
