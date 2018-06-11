@@ -51,6 +51,6 @@ for mouse_line in mouse_xinput_lines:
         print(mouse_line)
 
 # set mouse speed
-for mouse_id in mouse_xinput_ids:
-    run_command_shell('xinput set-prop {} "libinput Accel Speed" -1.0'.format(mouse_id))
-    run_command_shell('xinput set-prop {} "Device Accel Constant Deceleration" 8'.format(mouse_id))
+#for mouse_id in mouse_xinput_ids:
+#    run_command_shell('xinput set-prop {} "libinput Accel Speed" -1.0'.format(mouse_id))
+#    run_command_shell('xinput set-prop {} "Device Accel Constant Deceleration" 8'.format(mouse_id))

@@ -68,9 +68,6 @@ def exec_required(cmd, exit_code=0, dir=None):
 # Setup directories -----------------------------------------------------------
 
 home_dir = os.path.abspath(os.path.expanduser("~"))
-# custom-startup-config/autorestore
-curr_dir = os.path.abspath(".")
-git_dir = os.path.abspath(os.path.dirname(curr_dir));
 
 # Setup xprofile --------------------------------------------------------------
 
@@ -86,26 +83,6 @@ if args.pingmouse:
 
     # Make .xprofile executable
     exec_required(["chmod", "+x", os.path.abspath(os.path.join(home_dir, ".xprofile"))])
-
-# Setup CFQ elevator ----------------------------------------------------------
-
-print("Setting up CFQ elevator")
-
-grub_path = "/etc/default/grub"
-if not file_contains_string(grub_path, "elevator=cfq"):
-    file_replace_string(grub_path, "GRUB_CMDLINE_LINUX_DEFAULT", 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=cfq"')
-    exec_required(["update-grub"])
-
-# Setup fstab entries ---------------------------------------------------------
-
-print("Setting up /etc/fstab")
-
-fstab_path = "/etc/fstab"
-if not file_contains_string(fstab_path, "/tmp"):
-    fstab_file = open(fstab_path, 'a')
-    fstab_file.write('\n')
-    fstab_file.write("tmpfs   /tmp         tmpfs   rw,nodev,nosuid          0  0\n")
-    fstab_file.close();
 
 # Setup .bashrc ---------------------------------------------------------------
 
