@@ -20,7 +20,7 @@ root_dir = os.path.abspath(os.path.dirname(exec_dir))
 ping_dir = os.path.abspath(os.path.join(root_dir, "pingKeepAlive"))
 
 # custom-startup-config/mouseAcceleration
-mouse_dir = os.path.abspath(os.path.join(root_dir, "mouseAcceleration"))
+# mouse_dir = os.path.abspath(os.path.join(root_dir, "mouseAcceleration"))
 
 # Execute
 run([os.path.abspath(os.path.join(ping_dir, "ping-keepalive.sh"))])
