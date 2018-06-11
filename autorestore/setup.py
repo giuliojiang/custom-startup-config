@@ -68,6 +68,7 @@ def exec_required(cmd, exit_code=0, dir=None):
 # Setup directories -----------------------------------------------------------
 
 home_dir = os.path.abspath(os.path.expanduser("~"))
+git_dir = os.path.join(home_dir, "git")
 
 # Setup xprofile --------------------------------------------------------------
 
