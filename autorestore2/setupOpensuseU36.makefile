@@ -1,5 +1,5 @@
 all:
-    sudo ./modOpensuseInstalls.sh
+	sudo ./modOpensuseInstalls.sh
 	sudo python3 modMouseAccel.py
 	python3 modScreenrc.py
 	python3 modBashrc.py
