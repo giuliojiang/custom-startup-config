@@ -1,0 +1,2 @@
+#! /bin/bash
+chrt -r 10 firefox

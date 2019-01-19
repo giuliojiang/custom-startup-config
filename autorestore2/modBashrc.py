@@ -1,9 +1,34 @@
 import os
 import toolExec
+import shutil
 
 print("Setting up .bashrc")
+
+currentDir = os.path.abspath(os.path.dirname(__file__))
+sourcePath = os.path.join(currentDir, 'data', 'bashrc')
 
 homeDir = os.path.abspath(os.path.expanduser("~"))
 
 bashrcPath = os.path.join(homeDir, ".bashrc")
-toolExec.exec_required(["wget", "https://gist.github.com/giuliojiang/0791395432526b5f6abad7f897d48d9a/raw/01c5eebf8df600cbafe8c17be6b5af7c9fbace89/.bashrc", "-O", bashrcPath])
+
+shutil.copyfile(sourcePath, bashrcPath)
+
+# Setup home/.bin directory
+
+binSourceDir = os.path.join(currentDir, 'data', 'bin')
+binDestDir = os.path.join(homeDir, 'bin')
+
+if not os.path.exists(binDestDir):
+    os.mkdir(binDestDir)
+
+sourceFilesList = os.listdir(binSourceDir)
+for sourceFilePath in sourceFilesList:
+    sourceFileFullPath = os.path.join(binSourceDir, sourceFilePath)
+    destFileFullPath = os.path.join(binDestDir, sourceFilePath)
+    print("Copying {} to {}".format(sourceFileFullPath, destFileFullPath))
+    shutil.copyfile(sourceFileFullPath, destFileFullPath)
+    toolExec.exec_required([
+        'chmod',
+        '+x',
+        destFileFullPath
+    ])
